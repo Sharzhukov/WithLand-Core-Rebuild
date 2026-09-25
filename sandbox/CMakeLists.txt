@@ -1,0 +1,3 @@
+add_executable(withland_sandbox mainSandbox.cpp)
+target_link_libraries(withland_sandbox PRIVATE Withland::Core)
+withland_apply_warnings(withland_sandbox)

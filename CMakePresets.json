@@ -1,0 +1,136 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": { "major": 3, "minor": 21, "patch": 0 },
+
+  "configurePresets": [
+    {
+      "name": "base",
+      "hidden": true,
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "WITHLAND_CORE_BUILD_LIBRARY": "ON",
+        "WITHLAND_CORE_BUILD_APP":     "ON",
+        "WITHLAND_CORE_BUILD_SANDBOX": "ON",
+        "WITHLAND_CORE_BUILD_TESTS":   "ON"
+      }
+    },
+
+    {
+      "name": "macos-debug",
+      "displayName": "macOS Debug (Ninja)",
+      "inherits": "base",
+      "condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Darwin" },
+      "generator": "Ninja",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_OSX_DEPLOYMENT_TARGET": "11.0"
+      }
+    },
+    {
+      "name": "macos-release",
+      "displayName": "macOS Release (Universal)",
+      "inherits": "base",
+      "condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Darwin" },
+      "generator": "Ninja",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_OSX_DEPLOYMENT_TARGET": "11.0",
+        "CMAKE_OSX_ARCHITECTURES": "arm64;x86_64",
+        "WITHLAND_CORE_BUILD_SANDBOX": "OFF",
+        "WITHLAND_CORE_BUILD_TESTS":   "OFF"
+      }
+    },
+
+    {
+      "name": "linux-debug",
+      "displayName": "Linux Debug (Ninja, GCC)",
+      "inherits": "base",
+      "condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Linux" },
+      "generator": "Ninja",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "Debug" }
+    },
+    {
+      "name": "linux-release",
+      "displayName": "Linux Release (Ninja, GCC)",
+      "inherits": "base",
+      "condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Linux" },
+      "generator": "Ninja",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "WITHLAND_CORE_BUILD_SANDBOX": "OFF",
+        "WITHLAND_CORE_BUILD_TESTS":   "OFF"
+      }
+    },
+    {
+      "name": "linux-debug-clang",
+      "displayName": "Linux Debug (Ninja, Clang)",
+      "inherits": "base",
+      "condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Linux" },
+      "generator": "Ninja",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_COMPILER":   "clang",
+        "CMAKE_CXX_COMPILER": "clang++"
+      }
+    },
+
+    {
+      "name": "windows-debug",
+      "displayName": "Windows Debug (Ninja Multi-Config, MSVC)",
+      "inherits": "base",
+      "condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Windows" },
+      "generator": "Ninja Multi-Config",
+      "cacheVariables": { "CMAKE_CONFIGURATION_TYPES": "Debug;Release" }
+    },
+    {
+      "name": "windows-release",
+      "displayName": "Windows Release (Ninja Multi-Config, MSVC)",
+      "inherits": "base",
+      "condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Windows" },
+      "generator": "Ninja Multi-Config",
+      "cacheVariables": {
+        "CMAKE_CONFIGURATION_TYPES": "Debug;Release",
+        "WITHLAND_CORE_BUILD_SANDBOX": "OFF",
+        "WITHLAND_CORE_BUILD_TESTS":   "OFF"
+      }
+    }
+  ],
+
+  "buildPresets": [
+    { "name": "macos-debug",      "configurePreset": "macos-debug",      "jobs": 8 },
+    { "name": "macos-release",    "configurePreset": "macos-release",    "jobs": 8 },
+    { "name": "linux-debug",      "configurePreset": "linux-debug",      "jobs": 8 },
+    { "name": "linux-release",    "configurePreset": "linux-release",    "jobs": 8 },
+    { "name": "linux-debug-clang","configurePreset": "linux-debug-clang","jobs": 8 },
+    { "name": "windows-debug",    "configurePreset": "windows-debug",    "configuration": "Debug",   "jobs": 8 },
+    { "name": "windows-release",  "configurePreset": "windows-release",  "configuration": "Release", "jobs": 8 }
+  ],
+
+  "testPresets": [
+    {
+      "name": "macos-debug",
+      "configurePreset": "macos-debug",
+      "output": { "outputOnFailure": true },
+      "execution": { "timeout": 30 }
+    },
+    {
+      "name": "linux-debug",
+      "configurePreset": "linux-debug",
+      "output": { "outputOnFailure": true },
+      "execution": { "timeout": 30 }
+    },
+    {
+      "name": "linux-debug-clang",
+      "configurePreset": "linux-debug-clang",
+      "output": { "outputOnFailure": true },
+      "execution": { "timeout": 30 }
+    },
+    {
+      "name": "windows-debug",
+      "configurePreset": "windows-debug",
+      "configuration": "Debug",
+      "output": { "outputOnFailure": true },
+      "execution": { "timeout": 30 }
+    }
+  ]
+}
