@@ -17,7 +17,6 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 #include <iostream>
-
 // #include <withland/core/Colony.hpp>   // по мере готовности API
 
 int main(int /*argc*/, char** /*argv*/) {
