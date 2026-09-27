@@ -5,28 +5,28 @@
 
 # WithlandCore-Rebuild
 
-Ядро проекта **WithLand**. Полная переработка с нуля на чистом C++17.
+The core of the **WithLand** project. A complete rewrite from scratch in pure C++17.
 
-## Что внутри
+## What's inside
 
-- `include/withland/common/` — общие типы и утилиты
-- `include/withland/core/` — доменная логика (колония, колонисты и т.д.)
-- `src/` — реализации
-- `app/` — точка входа приложения (`withland`)
-- `sandbox/` — exe для ручной отладки
-- `tests/` — автотесты через CTest
-- `docs/` — документация
+- `include/withland/common/` — common types and utilities
+- `include/withland/core/` — domain logic (colony, colonists, etc.)
+- `src/` — implementations
+- `app/` — application entry point (`withland`)
+- `sandbox/` — exe for manual debugging
+- `tests/` — automated tests via CTest
+- `docs/` — documentation
 
-## Требования
+## Requirements
 
 - CMake ≥ 3.21
 - C++17
-- Компилятор: MSVC 2019+, Clang 12+, GCC 9+
+- Compiler: MSVC 2019+, Clang 12+, GCC 9+
 - Ninja ≥ 1.11
 
 ---
 
-## Сборка
+## Build
 
 ### Windows (Developer PowerShell for VS)
 ```powershell
@@ -51,7 +51,7 @@ cmake --build --preset linux-debug
 ctest --preset linux-debug
 ```
 
-## Установка
+## Installation
 
 ```bash
 cmake --install build --config Release --prefix <path>    # Windows
@@ -60,6 +60,6 @@ cmake --install build --prefix <path>                     # macOS/Linux
 
 ---
 
-## Лицензия
+## License
 
-**GNU General Public License v3.0** — см. [LICENSE](LICENSE).
+**GNU General Public License v3.0** — see [LICENSE](LICENSE).
