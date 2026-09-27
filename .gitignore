@@ -33,3 +33,7 @@ CTestTestfile.cmake
 *.exe
 *.pdb
 *.ilk
+
+#docs
+/docs/
+/docs/*

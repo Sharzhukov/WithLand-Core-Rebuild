@@ -1,5 +1,5 @@
-//  mainTest.cpp
-//  WithLand Core (WithLand-Core)
+//  mainTest.cpp (WithLand Core)
+//  WithLand — Behind every survivor is a choice: the land remembers those who stayed.
 //
 //  Copyright (C) 2026 Alexander Sharzhukov
 //

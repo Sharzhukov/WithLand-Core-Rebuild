@@ -1,12 +1,12 @@
 {
-  "version": 3,
-  "cmakeMinimumRequired": { "major": 3, "minor": 21, "patch": 0 },
+  "version": 6,
+  "cmakeMinimumRequired": { "major": 3, "minor": 25, "patch": 0 },
 
   "configurePresets": [
     {
       "name": "base",
       "hidden": true,
-      "binaryDir": "${sourceDir}/build",
+      "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "WITHLAND_CORE_BUILD_LIBRARY": "ON",
         "WITHLAND_CORE_BUILD_APP":     "ON",
@@ -17,7 +17,7 @@
 
     {
       "name": "macos-debug",
-      "displayName": "macOS Debug (Ninja)",
+      "displayName": "macOS Debug (Ninja, AppleClang)",
       "inherits": "base",
       "condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Darwin" },
       "generator": "Ninja",
@@ -38,6 +38,14 @@
         "CMAKE_OSX_ARCHITECTURES": "arm64;x86_64",
         "WITHLAND_CORE_BUILD_SANDBOX": "OFF",
         "WITHLAND_CORE_BUILD_TESTS":   "OFF"
+      }
+    },
+    {
+      "name": "macos-debug-asan",
+      "displayName": "macOS Debug + ASan/UBSan",
+      "inherits": "macos-debug",
+      "cacheVariables": {
+        "WITHLAND_CORE_ENABLE_SANITIZERS": "ON"
       }
     },
 
@@ -69,8 +77,23 @@
       "generator": "Ninja",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_C_COMPILER":   "clang",
         "CMAKE_CXX_COMPILER": "clang++"
+      }
+    },
+    {
+      "name": "linux-debug-strict",
+      "displayName": "Linux Debug + -Werror (CI)",
+      "inherits": "linux-debug",
+      "cacheVariables": {
+        "WITHLAND_CORE_WARNINGS_AS_ERRORS": "ON"
+      }
+    },
+    {
+      "name": "linux-debug-asan",
+      "displayName": "Linux Debug + ASan/UBSan",
+      "inherits": "linux-debug",
+      "cacheVariables": {
+        "WITHLAND_CORE_ENABLE_SANITIZERS": "ON"
       }
     },
 
@@ -93,44 +116,109 @@
         "WITHLAND_CORE_BUILD_SANDBOX": "OFF",
         "WITHLAND_CORE_BUILD_TESTS":   "OFF"
       }
+    },
+    {
+      "name": "windows-debug-asan",
+      "displayName": "Windows Debug + ASan (MSVC)",
+      "inherits": "windows-debug",
+      "cacheVariables": {
+        "WITHLAND_CORE_ENABLE_SANITIZERS": "ON"
+      }
     }
   ],
 
   "buildPresets": [
-    { "name": "macos-debug",      "configurePreset": "macos-debug",      "jobs": 8 },
-    { "name": "macos-release",    "configurePreset": "macos-release",    "jobs": 8 },
-    { "name": "linux-debug",      "configurePreset": "linux-debug",      "jobs": 8 },
-    { "name": "linux-release",    "configurePreset": "linux-release",    "jobs": 8 },
-    { "name": "linux-debug-clang","configurePreset": "linux-debug-clang","jobs": 8 },
-    { "name": "windows-debug",    "configurePreset": "windows-debug",    "configuration": "Debug",   "jobs": 8 },
-    { "name": "windows-release",  "configurePreset": "windows-release",  "configuration": "Release", "jobs": 8 }
+    { "name": "macos-debug",       "configurePreset": "macos-debug",       "jobs": 8 },
+    { "name": "macos-release",     "configurePreset": "macos-release",     "jobs": 8 },
+    { "name": "macos-debug-asan",  "configurePreset": "macos-debug-asan",  "jobs": 8 },
+    { "name": "linux-debug",       "configurePreset": "linux-debug",       "jobs": 8 },
+    { "name": "linux-release",     "configurePreset": "linux-release",     "jobs": 8 },
+    { "name": "linux-debug-clang", "configurePreset": "linux-debug-clang", "jobs": 8 },
+    { "name": "linux-debug-strict","configurePreset": "linux-debug-strict","jobs": 8 },
+    { "name": "linux-debug-asan",  "configurePreset": "linux-debug-asan",  "jobs": 8 },
+    { "name": "windows-debug",     "configurePreset": "windows-debug",     "configuration": "Debug",   "jobs": 8 },
+    { "name": "windows-release",   "configurePreset": "windows-release",   "configuration": "Release", "jobs": 8 },
+    { "name": "windows-debug-asan","configurePreset": "windows-debug-asan","configuration": "Debug",   "jobs": 8 }
   ],
 
   "testPresets": [
     {
       "name": "macos-debug",
       "configurePreset": "macos-debug",
-      "output": { "outputOnFailure": true },
+      "output":    { "outputOnFailure": true },
+      "execution": { "timeout": 30 }
+    },
+    {
+      "name": "macos-debug-asan",
+      "configurePreset": "macos-debug-asan",
+      "output":    { "outputOnFailure": true },
       "execution": { "timeout": 30 }
     },
     {
       "name": "linux-debug",
       "configurePreset": "linux-debug",
-      "output": { "outputOnFailure": true },
+      "output":    { "outputOnFailure": true },
       "execution": { "timeout": 30 }
     },
     {
       "name": "linux-debug-clang",
       "configurePreset": "linux-debug-clang",
-      "output": { "outputOnFailure": true },
+      "output":    { "outputOnFailure": true },
+      "execution": { "timeout": 30 }
+    },
+    {
+      "name": "linux-debug-strict",
+      "configurePreset": "linux-debug-strict",
+      "output":    { "outputOnFailure": true },
+      "execution": { "timeout": 30 }
+    },
+    {
+      "name": "linux-debug-asan",
+      "configurePreset": "linux-debug-asan",
+      "output":    { "outputOnFailure": true },
       "execution": { "timeout": 30 }
     },
     {
       "name": "windows-debug",
       "configurePreset": "windows-debug",
       "configuration": "Debug",
-      "output": { "outputOnFailure": true },
+      "output":    { "outputOnFailure": true },
       "execution": { "timeout": 30 }
+    }
+  ],
+
+  "workflowPresets": [
+    {
+      "name": "ci-linux",
+      "steps": [
+        { "type": "configure", "name": "linux-debug-strict" },
+        { "type": "build",     "name": "linux-debug-strict" },
+        { "type": "test",      "name": "linux-debug-strict" }
+      ]
+    },
+    {
+      "name": "ci-linux-asan",
+      "steps": [
+        { "type": "configure", "name": "linux-debug-asan" },
+        { "type": "build",     "name": "linux-debug-asan" },
+        { "type": "test",      "name": "linux-debug-asan" }
+      ]
+    },
+    {
+      "name": "ci-macos",
+      "steps": [
+        { "type": "configure", "name": "macos-debug" },
+        { "type": "build",     "name": "macos-debug" },
+        { "type": "test",      "name": "macos-debug" }
+      ]
+    },
+    {
+      "name": "ci-windows",
+      "steps": [
+        { "type": "configure", "name": "windows-debug" },
+        { "type": "build",     "name": "windows-debug" },
+        { "type": "test",      "name": "windows-debug" }
+      ]
     }
   ]
 }

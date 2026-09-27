@@ -1,4 +1,4 @@
-# WithlandCore-Rebuild
+# Withland-Core-Rebuild
 
 [![C++17](https://img.shields.io/badge/C%2B%2B-17-blue.svg)](https://en.cppreference.com/w/cpp/17)
 [![CMake](https://img.shields.io/badge/CMake-3.21%2B-green.svg)](https://cmake.org/)
@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/badge/license-GPL--3.0-yellow.svg)](LICENSE)
 
 > **WithLand** - Behind every survivor is a choice: the land remembers those who stayed.
-> **WithlandCore-Rebuild** is its domain core, rewritten from scratch in pure C++17 — with a focus on clean architecture, testability, and separation of concerns.
+> **Withland-Core-Rebuild** is its domain core, rewritten from scratch in pure C++17 — with a focus on clean architecture, testability, and separation of concerns.
 
 The core handles colonists, resources, events, marriages, diseases, and daily simulation ticks. UI (console and raylib-based) lives in separate layers and depends on the core, not the other way around.
 
@@ -27,7 +27,7 @@ The core handles colonists, resources, events, marriages, diseases, and daily si
 ## 📁 Project structure
 
 ```
-WithlandCore-Rebuild/
+Withland-Core-Rebuild/
 ├── include/withland/
 │   ├── common/          # common types, utilities, helpers
 │   └── core/            # domain logic (Colony, Colonist, Event, ...)
@@ -114,4 +114,4 @@ This program is free software: you can redistribute it and/or modify it under th
 
 ---
 
-**Author:** Alexander Sharzhukov · [sharzhukov.ru](https://sharzhukov.ru) · [GitHub](https://github.com/Sharzhukov)
+**Author:** Alexander Sharzhukov · [sharzhukov.com](https://sharzhukov.com) · [GitHub](https://github.com/Sharzhukov)
