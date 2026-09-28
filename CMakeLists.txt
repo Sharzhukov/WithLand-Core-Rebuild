@@ -101,18 +101,18 @@ if(WITHLAND_CORE_BUILD_LIBRARY)
     )
 
     set(WITHLAND_COMMON_SOURCES
-        # src/common/Utils.cpp
+        src/common/common.cpp
     )
     set(WITHLAND_COMMON_HEADERS
-        # include/withland/common/Utils.hpp
+        include/withland/common/common.hpp
     )
 
     set(WITHLAND_CORE_MODULE_SOURCES
-        # src/core/Colony.cpp
+        src/core/colonist.cpp
         # src/core/Colonist.cpp
     )
     set(WITHLAND_CORE_MODULE_HEADERS
-        # include/withland/core/Colony.hpp
+        include/withland/core/colonist.hpp
         # include/withland/core/Colonist.hpp
     )
 

@@ -1,4 +1,4 @@
-//  main.cpp (WithLand Core)
+//  mainTest.cpp (WithLand Core)
 //  WithLand — Behind every survivor is a choice: the land remembers those who stayed.
 //
 //  Copyright (C) 2026 Alexander Sharzhukov
@@ -17,18 +17,11 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 #include <withland/common/common.hpp>
-#include <withland/core/colonist.hpp>
-// #include <withland/core/Colony.hpp>   // по мере готовности API
+#include <cassert>
 
-int main(int /*argc*/, char** /*argv*/) {
-    std::cout << "WithLand starting...\n";
-
-    // withland::Colony colony("Alpha");
-    // colony.UpdateDay();
-
-    
-    withland::colonist col("Andru");
-    std::cout << col.GetName() << std::endl;
-    std::cout << "WithLand finished\n";
+int main() {
+    std::cout << "[test] start\n";
+    assert(1 + 1 == 2);
+    std::cout << "[test] ALL OK\n";
     return 0;
 }

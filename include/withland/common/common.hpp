@@ -1,4 +1,4 @@
-//  main.cpp (WithLand Core)
+//  common.hpp (WithLand Core)
 //  WithLand — Behind every survivor is a choice: the land remembers those who stayed.
 //
 //  Copyright (C) 2026 Alexander Sharzhukov
@@ -16,19 +16,17 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-#include <withland/common/common.hpp>
-#include <withland/core/colonist.hpp>
-// #include <withland/core/Colony.hpp>   // по мере готовности API
+#pragma once
+#ifndef withland_common_hpp
+#define withland_common_hpp
 
-int main(int /*argc*/, char** /*argv*/) {
-    std::cout << "WithLand starting...\n";
+#include <iostream>
+#include <math.h>
+#include <vector>
+#include <fstream>
+#include <string>
 
-    // withland::Colony colony("Alpha");
-    // colony.UpdateDay();
 
-    
-    withland::colonist col("Andru");
-    std::cout << col.GetName() << std::endl;
-    std::cout << "WithLand finished\n";
-    return 0;
-}
+namespace withland {};
+#endif
+

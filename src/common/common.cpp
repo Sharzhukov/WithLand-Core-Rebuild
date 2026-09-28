@@ -1,4 +1,4 @@
-//  mainTest.cpp (WithLand Core)
+//  common.cpp (WithLand Core)
 //  WithLand — Behind every survivor is a choice: the land remembers those who stayed.
 //
 //  Copyright (C) 2026 Alexander Sharzhukov
@@ -16,12 +16,4 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-#include <cassert>
-#include <iostream>
-
-int main() {
-    std::cout << "[test] start\n";
-    assert(1 + 1 == 2);
-    std::cout << "[test] ALL OK\n";
-    return 0;
-}
+#include <withland/common/common.hpp>
