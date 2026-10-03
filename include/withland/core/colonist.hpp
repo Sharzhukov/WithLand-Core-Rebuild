@@ -21,17 +21,39 @@
 #define withland_colonist_hpp
 
 #include <withland/common/common.hpp>
+#include <withland/core/components/entityStates.hpp>
 
 namespace withland {
-    class colonist
-    {
-    private:
-        std::string m_name;
-    public:
-        colonist(std::string name_);
-        ~colonist();
-        std::string GetName();
-    };
+    
+    namespace core {
+        class colonist
+        {
+        private:
+            //static unsigned int m_idTotal_colonist;
+            //unsigned int m_id_colonist;
+
+            std::string m_name_colonist;
+            //unsigned short int m_age_colonist;
+            //unsigned short int m_health_colonist;
+            //unsigned short int m_nunger_colonist;
+            //unsigned short int m_mood_colonist;
+            //unsigned int m_daysLived_colonist;
+
+            //bool m_aliveStatus_colonist;
+            //colonist* m_colonist_colonist;
+            //withland::components::gender m_genger_colonist;
+            //withland::components::race m_race_colonist;
+            withland::components::profession m_profession_colonist;
+            //withland::components::disease m_disease_colonist;
+
+
+        public:
+            colonist(std::string name_);
+            ~colonist();
+            std::string GetName();
+            withland::components::profession GetProfession() { return m_profession_colonist; }
+        };
+    }
 }
 
 #endif

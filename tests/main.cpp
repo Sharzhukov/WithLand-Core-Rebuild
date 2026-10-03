@@ -17,11 +17,16 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 #include <withland/common/common.hpp>
+#include <withland/core/colonist.hpp>
 #include <cassert>
 
 int main() {
     std::cout << "[test] start\n";
-    assert(1 + 1 == 2);
+    withland::core::colonist col("Hero");
+    assert(col.GetName() == "Hero");
+    std::cout << col.GetName() << std::endl;
+    std::cout << static_cast<int>(col.GetProfession()) << std::endl;
     std::cout << "[test] ALL OK\n";
+    std::cin.get();
     return 0;
 }

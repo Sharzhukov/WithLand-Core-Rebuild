@@ -1,4 +1,4 @@
-//  common.hpp (WithLand Core)
+//  entityStates.cpp (WithLand Core)
 //  WithLand — Behind every survivor is a choice: the land remembers those who stayed.
 //
 //  Copyright (C) 2026 Alexander Sharzhukov
@@ -16,23 +16,22 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-#pragma once
-#ifndef withland_common_hpp
-#define withland_common_hpp
-
-#include <iostream>
-#include <math.h>
-#include <vector>
-#include <fstream>
-#include <string>
+#include <withland/core/components/entityStates.hpp>
 
 namespace withland {
-    namespace core {}
-    namespace common {}
     namespace components {
-        namespace modules {}
+        const std::vector<std::string> male_names_colonist = {
+            "Arthur", "Alexander", "Benjamin", "Charles", "Daniel", 
+            "Edward", "Edward", "Ethan", "George", "Henry", 
+            "Jack", "James", "Liam", "Matthew", "Oliver", 
+            "Richard", "Robert", "Samuel", "Thomas", "William"
+        };
+
+        const std::vector<std::string> female_names_colonist = {
+            "Alice", "Amelia", "Beatrice", "Charlotte", "Diana", 
+            "Eleanor", "Elizabeth", "Emma", "Evelyn", "Grace", 
+            "Isabella", "Lily", "Lucy", "Margaret", "Olivia", 
+            "Sophia", "Rose", "Victoria", "Victoria", "Sophia"
+        };
     }
 }
-
-#endif
-

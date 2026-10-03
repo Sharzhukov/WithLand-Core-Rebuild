@@ -108,12 +108,20 @@ if(WITHLAND_CORE_BUILD_LIBRARY)
     )
 
     set(WITHLAND_CORE_MODULE_SOURCES
+        #core
         src/core/colonist.cpp
         # src/core/Colonist.cpp
+
+        #components
+        src/core/components/entityStates.cpp
     )
     set(WITHLAND_CORE_MODULE_HEADERS
+        #core
         include/withland/core/colonist.hpp
         # include/withland/core/Colonist.hpp
+
+        #components
+        include/withland/core/components/entityStates.hpp
     )
 
     set(WITHLAND_CORE_SOURCES

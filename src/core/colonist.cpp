@@ -19,11 +19,13 @@
 #include <withland/core/colonist.hpp>
 
 namespace withland {
-    colonist::colonist(std::string name_) {
-        m_name = name_;
+    namespace core {
+        colonist::colonist(std::string name_) {
+            m_name_colonist = name_;
+            m_profession_colonist = withland::components::profession::Warrior;
+        }
+        colonist::~colonist() {}
+
+        std::string colonist::GetName() { return m_name_colonist; }
     }
-    colonist::~colonist() {}
-
-    std::string colonist::GetName() { return m_name; }
-
 }

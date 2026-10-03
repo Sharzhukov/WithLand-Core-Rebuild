@@ -23,12 +23,6 @@
 int main(int /*argc*/, char** /*argv*/) {
     std::cout << "WithLand starting...\n";
 
-    // withland::Colony colony("Alpha");
-    // colony.UpdateDay();
-
-    
-    withland::colonist col("Andru");
-    std::cout << col.GetName() << std::endl;
     std::cout << "WithLand finished\n";
     return 0;
 }
